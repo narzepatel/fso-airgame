@@ -1,0 +1,34 @@
+#Game Sounds Start
+
+$Name: vulcan
+	+Entry: vulcan.wav
+	+Cycle type: sequential
+	+Preload: no
+	+Volume: (0.5)
+	+3D Sound:
+        	+Attenuation start: 50
+        	+Attenuation end: 400
+	+Pitch: (1.0)
+
+$Name: gsh
+	+Entry: gsh.wav
+	+Cycle type: sequential
+	+Preload: no
+	+Volume: (0.5)
+	+3D Sound:
+        	+Attenuation start: 50
+        	+Attenuation end: 400
+	+Pitch: (1.0)
+
+$Name: missile1
+	+Entry: missile1.ogg
+	+Cycle type: sequential
+	+Preload: no
+	+Volume: (0.5)
+	+3D Sound:
+        	+Attenuation start: 50
+        	+Attenuation end: 400
+	+Pitch: (1.0)
+
+
+#Game Sounds End

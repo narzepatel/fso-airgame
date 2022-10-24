@@ -1,0 +1,138 @@
+#Ship Classes
+
+$Name:                              flat_1
+$Short name:                        ground1
+$Species:                           Terran
+   +Tech Description:
+XSTR( "Ground.", -1)
+$end_multi_text
+$POF file:                          flat.pof
+$Detail distance:                   (0)
+$Collision LOD: 		    1
+$Show damage:                       YES
+$Density:                           1
+$Damp:                              0.2
+$Rotdamp:                           0.2
+$Max Velocity:                      0.0, 0.0, 0.0
+$Rotation time:                     1000.0, 1000.0, 1000.0
+$Rear Velocity:                     0.0
+$Forward accel:                     0.0
+$Forward decel:                     0.0
+$Slide accel:                       0.0
+$Slide decel:                       0.0
+$Expl inner rad:                    0.0
+$Expl outer rad:                    0.0
+$Expl damage:                       0.0
+$Expl blast:                        0.0
+$Expl Propagates:                   NO
+$Shockwave Speed:                   0.0
+$Default PBanks:                    ( )
+$Default SBanks:                    ( )
+$SBank Capacity:                    ( )
+$Shields:                           0
+$Shield Color:                      0 0 0
+$Power Output:                      0.0
+$Max Oclk Speed:                    0.0
+$Max Weapon Eng:                    0.0
+$Hitpoints:                         999999
+$Flags:                             (  )
+$AI Class:                          Captain
+$Afterburner:                       NO
+$Countermeasures:                   0
+$Scan time:                         2000
+$EngineSnd:                         -1
+$Closeup_pos:                       0.0, 0.0, -600
+$Closeup_zoom:                      0.5
+$Score:                             0
+
+$Name:                              Coast_1
+$Short name:                        coast1
+$Species:                           Terran
+   +Tech Description:
+XSTR( "Ground.", -1)
+$end_multi_text
+$POF file:                          coast1.pof
+$Detail distance:                   (0)
+$Collision LOD: 		    1
+$Show damage:                       YES
+$Density:                           1
+$Damp:                              0.2
+$Rotdamp:                           0.2
+$Max Velocity:                      0.0, 0.0, 0.0
+$Rotation time:                     1000.0, 1000.0, 1000.0
+$Rear Velocity:                     0.0
+$Forward accel:                     0.0
+$Forward decel:                     0.0
+$Slide accel:                       0.0
+$Slide decel:                       0.0
+$Expl inner rad:                    0.0
+$Expl outer rad:                    0.0
+$Expl damage:                       0.0
+$Expl blast:                        0.0
+$Expl Propagates:                   NO
+$Shockwave Speed:                   0.0
+$Default PBanks:                    ( )
+$Default SBanks:                    ( )
+$SBank Capacity:                    ( )
+$Shields:                           0
+$Shield Color:                      0 0 0
+$Power Output:                      0.0
+$Max Oclk Speed:                    0.0
+$Max Weapon Eng:                    0.0
+$Hitpoints:                         999999
+$Flags:                             (    )
+$AI Class:                          Captain
+$Afterburner:                       NO
+$Countermeasures:                   0
+$Scan time:                         2000
+$EngineSnd:                         -1
+$Closeup_pos:                       0.0, 0.0, -600
+$Closeup_zoom:                      0.5
+$Score:                             0
+
+$Name:                              mountains_1
+$Short name:                        mountains1
+$Species:                           Terran
+   +Tech Description:
+XSTR( "Ground.", -1)
+$end_multi_text
+$POF file:                          mountains1.pof
+$Detail distance:                   (0)
+$Collision LOD: 		    1
+$Show damage:                       YES
+$Density:                           1
+$Damp:                              0.2
+$Rotdamp:                           0.2
+$Max Velocity:                      0.0, 0.0, 0.0
+$Rotation time:                     1000.0, 1000.0, 1000.0
+$Rear Velocity:                     0.0
+$Forward accel:                     0.0
+$Forward decel:                     0.0
+$Slide accel:                       0.0
+$Slide decel:                       0.0
+$Expl inner rad:                    0.0
+$Expl outer rad:                    0.0
+$Expl damage:                       0.0
+$Expl blast:                        0.0
+$Expl Propagates:                   NO
+$Shockwave Speed:                   0.0
+$Default PBanks:                    ( )
+$Default SBanks:                    ( )
+$SBank Capacity:                    ( )
+$Shields:                           0
+$Shield Color:                      0 0 0
+$Power Output:                      0.0
+$Max Oclk Speed:                    0.0
+$Max Weapon Eng:                    0.0
+$Hitpoints:                         999999
+$Flags:                             (    )
+$AI Class:                          Captain
+$Afterburner:                       NO
+$Countermeasures:                   0
+$Scan time:                         2000
+$EngineSnd:                         -1
+$Closeup_pos:                       0.0, 0.0, -600
+$Closeup_zoom:                      0.5
+$Score:                             0
+
+#End

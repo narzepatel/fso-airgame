@@ -1,0 +1,136 @@
+#Conditional Hooks
+
+$Application: FS2_Open
+$On Game Init: [
+    function expDecayVec(goalVec, decayVec, multiplier)
+        if not multiplier then
+            multiplier = 1
+        end
+        return vec(goalVec.x + (decayVec.x - goalVec.x) * math.exp(-multiplier * ba.getMissionFrametime()),
+                goalVec.y + (decayVec.y - goalVec.y) * math.exp(-multiplier * ba.getMissionFrametime()),
+                goalVec.z + (decayVec.z - goalVec.z) * math.exp(-multiplier * ba.getMissionFrametime()))
+    end
+
+    function clamp(val, min, max)
+        if val > max then
+            val = max
+        elseif val < min then
+            val = min
+        end
+        return val
+    end
+]
+
+$State: GS_STATE_GAME_PLAY
+$On Frame: [
+    local plyr = hv.Player
+    --local lift = math.pow(((plyr.Physics:getForwardSpeed() - 40) * 0.01), 1)
+    --if lift < 0.1 then
+    --    lift = 0.1
+    --end
+    --plyr.Physics.Velocity = ba.createVector(0,0,0)
+    --plyr.Physics.VelocityDamping = 1 / lift
+    plyr.Physics.VelocityDamping = 1000
+
+    local vel = plyr.Physics.Velocity
+    local flow_direction = vel:getNormalized()
+
+    local stall_angle = 0.279
+    local angle = math.asin(-flow_direction:getDotProduct(plyr:getuvec())) + 0.026
+    local lift_coeff = (angle * 5.73)
+    if angle > stall_angle then
+        lift_coeff = (stall_angle * 5.73) * (-angle + math.pi * 0.5) / (math.pi * 0.5 - stall_angle)
+    elseif angle < -stall_angle then
+        lift_coeff = (stall_angle * 5.73) * (-angle - math.pi * 0.5) / (math.pi * 0.5 - stall_angle)
+    end
+    local fspeed_2 = math.pow(plyr.Physics:getForwardSpeed(), 2)
+    local lift = plyr:getuvec() * fspeed_2 * 0.005 * lift_coeff
+
+    local thrust_val = 6
+    local vel_cross = math.pow(flow_direction:getCrossProduct(plyr:getfvec()):getMagnitude(), 2)
+    local friction = thrust_val / (math.pow(plyr.Class.VelocityMax.z, 2)  * 0.005)
+    local drag = vel:getNormalized() * math.pow(plyr.Physics:getSpeed(), 2) * -0.005 * (vel_cross + friction)
+
+    --local max_speed = math.sqrt(thrust_val / (-0.005 * (0.02)))
+
+    local fwd = ba.getControlInfo().ForwardCruise
+    if ba.getControlInfo().Forward ~= 0 then
+        fwd = ba.getControlInfo().Forward
+    end
+
+    if true then
+        local fwd_speed = plyr.Physics:getForwardSpeed() / plyr.Class.VelocityMax.z
+        drag = drag * clamp((fwd_speed - fwd) + 1, 1, 2)
+    end
+
+    local thrust = plyr:getfvec() * fwd * thrust_val
+
+    local gravity = ba.createVector(0, -9.81, 0)
+
+    if true then
+        local thrust_mod = 0
+        local x = clamp(plyr.Physics:getSpeed() / plyr.Class.VelocityMax.z, 0, 1)
+
+        thrust = thrust * (1 + (x * (1 - x) * 4))
+
+        local not_upness = plyr:getfvec():getCrossProduct(gravity:getNormalized()):getMagnitude()
+
+        if plyr:getfvec():getDotProduct(gravity:getNormalized()) < 0 then
+            thrust = thrust * not_upness
+        end
+    end
+
+    if plyr.Physics.AfterburnerActive then
+        thrust = thrust * 3
+    end
+
+    local current_vel = plyr.Physics.Velocity
+    plyr.Physics.Velocity = current_vel + (lift + drag + thrust + gravity) * ba.getMissionFrametime()
+
+    if true then
+        local val = clamp((plyr.Physics:getForwardSpeed() / plyr.Class.VelocityMax.z) - 0.1, 0, 1)
+        val = val * val
+        local x, y = 0,0
+
+        --local targetOrient = ba.createOrientationFromVectors(plyr.Physics.Velocity:getNormalized(), nil, plyr:getrvec())
+        --plyr.Orientation = targetOrient:rotationalInterpolate(plyr.Orientation, math.exp((1 - val) * 1 * -ba.getMissionFrametime()))
+        local speed = plyr.Physics.Velocity:getMagnitude()
+        plyr.Physics.Velocity = plyr:getfvec():rotationalInterpolate(plyr.Physics.Velocity:getNormalized(), math.exp((val) * 5 * -ba.getMissionFrametime())) * speed
+    end
+
+    local x, y = (plyr.Position + plyr.Physics.Velocity * 1000):getScreenCoords()
+    if x ~= false then
+        gr.setColor(255, 255, 255, 100)
+        gr.setLineWidth(3)
+        gr.drawCircle(15, x, y, false)
+    end
+
+    local stall_speed = math.sqrt(9.81 / (((0.279 * 5.73) + 0.15) * 0.005))
+
+    local fontsav = gr.CurrentFont
+    gr.CurrentFont  = gr.Fonts[2]
+    gr.setColor(255, 0, 0, 255)
+    local x, y = gr.getScreenWidth() / 2, gr.getScreenHeight() / 2
+    if plyr.Physics:getSpeed() < stall_speed or math.abs(angle) > 0.279 then
+        gr.drawString("STALL", x - (gr.getStringWidth("STALL") / 2), y - 100)
+    end
+    --gr.drawString(tostring((vel - plyr.Physics.Velocity):getMagnitude() / (9.81 * ba.getMissionFrametime())), x - (gr.getStringWidth("STALL") / 2), y - 100)
+
+
+    gr.CurrentFont  = gr.Fonts[1]
+    gr.setColor(255, 255, 255, 255)
+    local x, y = 0,0 --gr.getScreenWidth() / 2, gr.getScreenHeight() / 2
+    gr.drawString("lift "..(lift:getMagnitude() ), x, y)
+    gr.drawString("drag "..(drag:getMagnitude() ), x, y + 15)
+    gr.drawString((tostring(drag:getNormalized():getDotProduct(plyr:getfvec()))), x + 200, y + 15)
+    gr.drawString("angle "..(angle), x, y + 30)
+    gr.drawString("lift coeff "..(lift_coeff), x, y + 45)
+    gr.drawString("friction "..(friction), x, y + 60)
+    gr.drawString("thrust "..(thrust:getMagnitude()), x, y + 75)
+
+
+    gr.setLineWidth(1)
+    gr.CurrentFont  = fontsav
+]
+
+#End

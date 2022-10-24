@@ -1,0 +1,9 @@
+#Muzzle flash types
+
+$Mflash:
++name: 		gunflash1
++blob_name: 	gunflash1
++blob_offset: 	0.5
++blob_radius: 	0.5
+
+#End

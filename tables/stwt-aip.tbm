@@ -1,0 +1,12 @@
+#AI Profiles
+
+$Default Profile:          FS2 RETAIL
+$Profile Name:             FS2 RETAIL
++nocreate
+
+$AI Turn Time Scale:	2, 2, 2, 2, 2
+$Player Autoaim FOV:	3, 3, 2, 1, 1
+
+$fixed ship-weapon collisions: TRUE
+$better combat collision avoidance for fightercraft: TRUE
+#End

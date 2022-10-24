@@ -1,0 +1,202 @@
+#Conditional Hooks
+
+$Application: FS2_Open
+$On Game Init: [
+
+    HUDSize = gr.getScreenHeight() * 0.2
+    HUDTop = gr.getScreenHeight() * 0.5 - HUDSize
+    HUDBot = gr.getScreenHeight() * 0.5 + HUDSize
+    HUDLeft = gr.getScreenWidth() * 0.5 - HUDSize
+    HUDRight = gr.getScreenWidth() * 0.5 + HUDSize
+
+    function diff(x1, y1, x2, y2)
+        return x1 - x2, y1 - y2
+    end
+
+    function marker_extents(up_dirx, up_diry)
+        local mag = math.sqrt(up_dirx * up_dirx + up_diry * up_diry)
+        up_dirx = up_dirx / mag
+        up_diry = up_diry / mag
+        return up_diry * -150, up_dirx * 150, up_diry * 150, up_dirx * -150
+    end
+
+    function clamp(val, min, max)
+        if val > max then
+            val = max
+        elseif val < min then
+            val = min
+        end
+        return val
+    end
+
+    function box_check(x, y)
+        return HUDLeft < x and HUDRight > x and HUDTop < y and HUDBot > y
+    end
+
+    function draw_line_checked(x1, y1, x2, y2)
+        local xmin, xmax = HUDLeft, HUDRight
+        local ymin, ymax = HUDTop, HUDBot
+
+        local min_t = 0
+        local max_t = 1
+        if y2 > y1 then
+            min_t = math.max(min_t, (ymin - y1) / (y2 - y1))
+            max_t = math.min(max_t, (ymax - y1) / (y2 - y1))
+        elseif y2 < y1 then
+            min_t = math.max(min_t, (ymax - y1) / (y2 - y1))
+            max_t = math.min(max_t, (ymin - y1) / (y2 - y1))
+        end
+
+        if x2 > x1 then
+            min_t = math.max(min_t, (xmin - x1) / (x2 - x1))
+            max_t = math.min(max_t, (xmax - x1) / (x2 - x1))
+        elseif x2 < x1 then
+            min_t = math.max(min_t, (xmax - x1) / (x2 - x1))
+            max_t = math.min(max_t, (xmin - x1) / (x2 - x1))
+        end
+
+        ba.print("\n"..xmax.." "..ymax)
+        ba.print("\n"..x1.." "..y1.." "..x2.." "..y2)
+        ba.print("\n"..min_t.." "..max_t)
+
+        if max_t > min_t then
+            gr.drawLine(x1 + min_t * (x2 - x1), y1 + min_t * (y2 - y1), x1 + max_t * (x2 - x1), y1 + max_t * (y2 - y1))
+        end
+    end
+]
+
+$State: GS_STATE_GAME_PLAY
+$On HUD Draw: [
+    local plyr = hv.Player
+    local cam_pos = gr.getCurrentCamera(true).Position
+    --local x, y = (plyr:getfvec() * 1.5 + cam_pos):getScreenCoords()
+    local up = ba.createVector(0,1,0)
+    local fwd_vec = plyr:getfvec():projectOntoPlane(up):getNormalized()
+    local fwd_angle = math.atan2(fwd_vec.x, fwd_vec.z)
+
+    local r, g, b, a = 150, 220, 180, 200
+
+    local x1, y1, x2, y2
+    for up_ang_deg = -80, 80, 5 do
+        local up_ang = up_ang_deg * math.pi / 180
+        if (math.cos(up_ang) * fwd_vec + math.sin(up_ang) * up):getDotProduct(plyr:getfvec()) > 0.96 then
+            local vec = ba.createVector(math.sin(fwd_angle), 0, math.cos(fwd_angle))
+            local center = (math.cos(up_ang) * vec + math.sin(up_ang) * up) + cam_pos
+
+            local center_screenx, center_screeny = center:getScreenCoords()
+            if x1 == nil then
+                local center_screenmod_x, center_screenmod_y = (center + up * 0.3):getScreenCoords()
+                up_dirx, up_diry = diff(center_screenx, center_screeny, center_screenmod_x, center_screenmod_y)
+                x1, y1, x2, y2 = marker_extents(up_dirx, up_diry)
+            end
+
+            if up_ang_deg == 0 then
+                gr.setColor(r, g, b, 255)
+                gr.setLineWidth(5)
+                draw_line_checked(x1 * 1.5 + center_screenx, y1 * 1.5 + center_screeny, x2 * 1.5 + center_screenx, y2 * 1.5 + center_screeny)
+            else
+                local size
+                if up_ang_deg % 10 == 0 then
+                gr.setColor(r, g, b, a)
+                    gr.setLineWidth(4)
+                    size = 0.9
+                    local x, y = x1 + center_screenx - gr.getStringWidth(tostring(up_ang_deg)) / 2, y1 + center_screeny - 3.5
+                    if box_check(x, y) then
+                        gr.drawString(tostring(up_ang_deg), x, y)
+                    end
+                    x, y = x2 + center_screenx - gr.getStringWidth(tostring(up_ang_deg)) / 2, y2 + center_screeny - 3.5
+                    if box_check(x, y) then
+                        gr.drawString(tostring(up_ang_deg), x, y)
+                    end
+                else
+                gr.setColor(r, g, b, a * 0.5)
+                    gr.setLineWidth(2)
+                    size = 0.8
+                end
+                draw_line_checked(x1 * size + center_screenx, y1 * size + center_screeny, x1 * 0.5 + center_screenx, y1 * 0.5 + center_screeny)
+                draw_line_checked(x2 * size + center_screenx, y2 * size + center_screeny, x2 * 0.5 + center_screenx, y2 * 0.5 + center_screeny)
+            end
+        end
+    end
+
+    local fontsav = gr.CurrentFont
+    gr.CurrentFont = gr.Fonts[2]
+    local y = HUDTop - gr.getScreenHeight() * 0.04
+    for compass_ang_deg = -200, 210, 10 do
+        local x = ((compass_ang_deg * math.pi / 180) - fwd_angle) * 1.5
+
+        if x < 1 and x > -1 then
+            gr.setLineWidth(3)
+            gr.setColor(r, g, b, a)
+            if compass_ang_deg % 90 == 0 then
+                local str
+                if compass_ang_deg % 360 == 0 then
+                    str = "N"
+                elseif compass_ang_deg % 360 == 90 then
+                    str = "E"
+                elseif compass_ang_deg % 360 == 180 then
+                    str = "S"
+                elseif compass_ang_deg % 360 == 270 then
+                    str = "W"
+                end
+
+                if str ~= nil then
+                    gr.drawString(str, gr.getScreenWidth() / 2 + x * HUDSize - gr.getStringWidth(str) / 2, y - gr.getScreenHeight() * 0.05)
+                end
+                gr.drawLine(gr.getScreenWidth() / 2 + x * HUDSize, y, gr.getScreenWidth() / 2 + x * HUDSize, y - gr.getScreenHeight() * 0.02)
+            else
+                gr.drawLine(gr.getScreenWidth() / 2 + x * HUDSize, y, gr.getScreenWidth() / 2 + x * HUDSize, y - gr.getScreenHeight() * 0.01)
+            end
+        end
+    end
+    gr.CurrentFont = gr.Fonts[1]
+    str = tostring(math.floor(fwd_angle * 180 / math.pi) % 360)
+    gr.drawString(str, gr.getScreenWidth() / 2 - gr.getStringWidth(str) / 2, y + gr.getScreenHeight() * 0.01)
+
+    gr.CurrentFont = gr.Fonts[2]
+    gr.setLineWidth(2)
+
+    local str = "SPD "..string.format("%.0f", plyr.Physics:getForwardSpeed())
+    gr.drawString(str, HUDLeft - gr.getScreenHeight() * 0.2, gr.getScreenHeight() * 0.5)
+
+    local x = HUDLeft - gr.getScreenHeight() * 0.02
+    gr.drawLine(x, HUDTop, x , HUDBot)
+    for i = -50, 50, 10 do
+        local speed_diff = plyr.Physics:getForwardSpeed() % 10
+        local val = i + math.floor(plyr.Physics:getForwardSpeed() * 0.1) * 10
+        if val >= 0 then
+            gr.setColor(r, g, b, a)
+
+            local y = gr.getScreenHeight() * 0.5 - i * 2 + speed_diff * 2
+            if val % 50 == 0 then
+                gr.drawLine(x - gr.getScreenHeight() * 0.01, y, x - gr.getScreenHeight() * 0.03, y)
+            else
+                gr.drawLine(x - gr.getScreenHeight() * 0.01, y, x - gr.getScreenHeight() * 0.02, y)
+            end
+        end
+    end
+
+    str = string.format("%.0f", plyr.Position.y).." ALT"
+    gr.drawString(str, HUDRight + gr.getScreenHeight() * 0.2 - gr.getStringWidth(str), gr.getScreenHeight() * 0.5)
+
+    x = HUDRight + gr.getScreenHeight() * 0.02
+    gr.drawLine(x, HUDTop, x , HUDBot)
+    for i = -100, 100, 20 do
+        local alt_diff = plyr.Position.y % 20
+        local val = i - math.floor(plyr.Position.y * 0.05) * 20
+
+        gr.setColor(r, g, b, a)
+
+        local y = gr.getScreenHeight() * 0.5 + i * 1 + alt_diff * 1
+        if val % 100 == 0 then
+            gr.drawLine(x + gr.getScreenHeight() * 0.01, y, x + gr.getScreenHeight() * 0.03, y)
+        else
+            gr.drawLine(x + gr.getScreenHeight() * 0.01, y, x + gr.getScreenHeight() * 0.02, y)
+        end
+    end
+
+    gr.setLineWidth(1)
+    gr.CurrentFont = fontsav
+]
+
+#End

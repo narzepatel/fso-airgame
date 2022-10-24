@@ -1,0 +1,67 @@
+#Primary Weapons
+
+$Name:			Vulcan
++Description:
+XSTR(
+"''20 mm Rotary Cannon
+''Velocity: 2000 Range: 120,000
+''Damage: Medium Rate: High''", -1)
+$end_multi_text
+@Laser Bitmap:		tracer1
+@Laser Glow:		tracer1
+@Laser Color:		200, 200, 0
+@Laser Color2:		200, 200, 0
+@Laser Length:		7.0
+@Laser Head Radius:	1.0
+@Laser Tail Radius:	1.0
+$Velocity:		2000.0
+$Fire Wait:             0.1
+$Damage:                20
+$Armor Factor:		1.0
+$Shield Factor:		0.0
+$Subsystem Factor:	0.0
+$Lifetime:		60.0
+$Energy Consumed:	0
+$Cargo Size:		1.0
+$LaunchSnd:		vulcan
+$Rearm Rate:		2.0
+$Rearm Ammo Increment:	1000
++Weapon Range:		120000
+$Flags:                 ( "player allowed" "ballistic" "cycle" )
++Override
+$Impact Explosion:	None
+$Muzzleflash:		gunflash1
+
+$Name:			GSH
++Description:
+XSTR(
+"''30 mm Autocannon
+''Velocity: 2000 Range: 120,000
+''Damage: High Rate: Medium''", -1)
+$end_multi_text
+@Laser Bitmap:		tracer1
+@Laser Glow:		tracer1
+@Laser Color:		200, 200, 0
+@Laser Color2:		200, 200, 0
+@Laser Length:		7.0
+@Laser Head Radius:	1.0
+@Laser Tail Radius:	1.0
+$Velocity:		1000.0
+$Fire Wait:             0.2
+$Damage:                40
+$Armor Factor:		1.0
+$Shield Factor:		0.0
+$Subsystem Factor:	0.0
+$Lifetime:		120.0
+$Energy Consumed:	0
+$Cargo Size:		1.0
+$LaunchSnd:		gsh
+$Rearm Rate:		2.0
+$Rearm Ammo Increment:	1000
++Weapon Range:		120000
+$Flags:                 ( "player allowed" "ballistic" "cycle" )
++Override
+$Impact Explosion:	None
+$Muzzleflash:		gunflash1
+
+#End

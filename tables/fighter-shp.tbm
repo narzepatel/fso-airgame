@@ -1,0 +1,130 @@
+#Default Player Ship
+$Name: F-14
+#End
+#Engine Wash Info
+
+;; NOTE:  The default MUST be the first entry in the list of engine wash info
+
+$Name: Default
+$Angle: 10.0
+$Radius Mult: 1.2
+$Length: 400
+$Intensity:	1.0
+
+#End
+
+#Ship Classes
+
+$Name:                          F-14
+$Short name:                    F14
+$Species:                       Terran
++Type:                          XSTR("Interceptor", 2981)
++Maneuverability:               XSTR("High", 2982)
++Armor:                         XSTR("Average", 2983)
++Manufacturer:                  XSTR("Nankam Aeronautical", 2984)
++Description:			XSTR(" ", 2985)
+$end_multi_text
++Tech Description:
+XSTR("The GTF Perseus is the newest fighter in the GTVA's arsenal. Slated to replace the aging Valkyrie as the Alliance's primary interceptor, the Perseus's high max speed and maneuverability make it ideal to hunt and destroy enemy bombers. Perseus fighters have been assigned to the 3rd Battle Group on a trial basis, with wide deployment expected after the OpEval period. Primary weapons include the Subach HL-7 and Prometheus cannon, with secondary loads of Harpoon and Hornet missiles. Preliminary results have shown the Perseus to be a superb fighter.", 2986)
+$end_multi_text
++Length:			17 m
++Gun Mounts:			2
++Missile Banks:			2
+$POF file:                      F-14.pof
+$Detail distance:		(0, 180, 300, 1100)
+$Show damage:			YES
+;;$Gravity Const:               1
+$Density:                       1
+$Damp:                          0.5
+$Rotdamp:                       0.7
+$Banking Constant:		0
+$Max Velocity:			0.0, 0.0, 300.0                 
+$Rotation time:			6.3, 10.3, 6.3
+$Rear Velocity:			0.0
+$Forward accel:			15.0
+$Forward decel:			10
+$Slide accel:			0.0
+$Slide decel:			0.0
+$Expl inner rad:		25.0
+$Expl outer rad:		75.0
+$Expl damage:			25.0
+$Expl blast:			1000.0
+$Expl Propagates:		NO
+$Death Roll Rotation Multiplier:0                       
+$Shockwave Speed:		0.0                      
+$Allowed PBanks:        	( "Vulcan" )
+$Default PBanks:        	( "Vulcan" )
+$Pbank Capacity: 		( 2000 )
+$Allowed SBanks:        	( "Missile" )( "Missile" )
+$Default SBanks:        	( "Missile", "Missile" )
+$SBank Capacity:        	( 40, 40 )
+$Shields:                       0.0
+$Power Output:			2.0
+$Max Oclk Speed:		100.0
+$Max Weapon Eng:		0.0
+$Hitpoints:                     265
+$Flags:                         ( "player_ship" "default_player_ship" "fighter")
+$AI Class:                      Captain
+$Afterburner:			YES
+	+Aburn Max Vel:		0.0, 0.0, 450.0
+	+Aburn For accel:       8
+	+Aburn Fuel:            330.0
+	+Aburn Burn Rate:       60.0
+	+Aburn Rec Rate:        25.0
+$Countermeasures:		40
+$Scan time:                 	2000
+$EngineSnd:			126                   ;; Engine sound of ship
+$Closeup_pos:			0.0, 0.0, -30
+$Closeup_zoom:			0.5
+$Shield_icon:			shieldft-03
+$Ship_icon:                 	iconfighter2t-03
+$Ship_anim:                 	ssfighter2t-03
+$Ship_overhead:			loadfighter2t-03
+$Score:				14
+;;$Trail:
+;;	+Offset:		6.51 -1.76 -3.37
+;;	+Start Width:		0.25
+;;	+End Width:		0.05
+;;	+Start Alpha:		1.0
+;;	+End Alpha:		0.0
+;;	+Max Life:		1.0
+;;	+Spew Time:		120
+;;	+Bitmap:		Contrail01
+;;$Trail:
+;;	+Offset:		-6.51 -1.76 -3.37
+;;	+Start Width:		0.25
+;;	+End Width:		0.05
+;;	+Start Alpha:		1.0
+;;	+End Alpha:		0.0
+;;	+Max Life:		1.0
+;;	+Spew Time:		120
+;;	+Bitmap:		Contrail01
+;;$Trail:
+;;	+Offset:		0 -4.30 -5.08
+;;	+Start Width:		0.25
+;;	+End Width:		0.05
+;;	+Start Alpha:		1.0
+;;	+End Alpha:		0.0
+;;	+Max Life:		1.0
+;;	+Spew Time:		120
+;;	+Bitmap:		Contrail01
+$Subsystem:                     sensors,                10,0.0
+$Subsystem:                     communications,		10,0.0
+$Subsystem:                     weapons,                10,0.0
+$Subsystem:                     navigation,             10,0.0
+$Subsystem:                     engine,                 35,0.0
+
+#End
+
+; $Player Ship Precedence is used in ship selection when a ship specified by the mission
+; designer is not available to the player.  The next ship on the list is used in its place
+; (assuming that ship is allowed for the player).
+;
+
+$Player Ship Precedence: (
+	"F-14"
+	"F-16"
+	"F-18"
+	"F-22"
+	"F-35"
+)

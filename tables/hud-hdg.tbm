@@ -1,0 +1,289 @@
+$Load Retail Configuration: NO
+$Font: 1
+$Max Directives: 20
+$Max Escort Ships: 20
+
+#Gauge Config
+	$Base: (960, 540)
+	$Gauges:
+		+Player Shields: 
+			Position: (641, 450)
+		;+Player Shields: 
+		;	Position: (1338, 940)
+		; ani is 112 wide
+		; (1338-56)/2 + 56
+		; +/- 5
+
+		+Target Shields: 
+			Position: (207, 450)
+		;+Target Shields: 
+		;	Position: (470, 940)
+	$End Gauges
+#End
+
+#Gauge Config
+	$Base: (1920, 1080)
+	$Gauges:
+		+Talking Head: 
+			Position: (30, 30)
+			Filename: hdhud_head1
+			Header Offsets: (8, 2)
+			Animation Offsets: (5, 24)
+			Animation Size: (250, 200)
+		+Messages: 
+			Position: (300, 0)
+			Max Lines: 7
+			Max Width: 1590
+			Line Height: 16
+			Hidden By Comms Menu: NO
+		+Radar: 
+			Position: (200, 760)
+			Filename: hdhud_radar1
+			Radar Center Offsets: (250, 150)
+			Radar Size: (480, 280)
+			Infinity Distance Offsets: (500, 300)
+			Long Distance Offsets: (500, 300)
+			Short Distance Offsets: (500, 300)
+		+Training Messages: 
+			Position: (720, 330)
+		+Objective Notify: 
+			Position: (823, 412)
+			Filename: hdhud_objectives1
+			Objective Text Y-offset: 2
+			Objective Value Y-offset: 18
+			Subspace Text Y-offset: 2
+			Subspace Value Y-offset: 18
+			Red Alert Text Y-offset: 2
+			Red Alert Value Y-offset: 18
+		+Support:
+			Position: (865, 451)
+			Filename: hdhud_support1
+			Header Offsets: (44, 2)
+			Text Y-Offset: 18
+			Dock Status X-offset: 4
+			Dock Time X-Offset: 112
+		+Text Warnings: 
+			Position: (960, 500)
+	
+	; RETICLE
+		+Afterburner Energy:
+			Position: (960, 380)
+			Filename: hdhud_energy2
+			Foreground Clip Height: 128
+		+Weapon Energy:
+			Filename: none
+		+Center Reticle: 
+			Position: (930, 510)
+			Filename: hdhud_reticle1
+		+Throttle:
+			Position: (760, 380)
+			Filename: hdhud_leftarc
+			Foreground Clip Bottom Y-offset: 228
+			Foreground Clip Height: 128
+			Afterburner clip height: 78
+			Max Speed Label Offsets: (9000, 0)
+			Min Speed Label Offsets: (9000, 0)
+		+Threat Indicator: 
+			Position: (960, 380)
+			Arc Filename: hdhud_rightarc1
+			Dumbfire Filename: hdhud_toparc2
+			Lock Filename: hdhud_toparc3
+			Dumbfire Offsets: (0, 0)
+			Lock Offsets: (0, 0)
+		+Mini Target Shields:
+			Position: (932, 580)
+			Filename: none
+
+		+Target Brackets:
+		+Flight Path Marker:
+			Filename: 			Flight_Path_Default
+			Center Offsets: (30, 30)
+		+Lead Sight:	
+			Filename: 			Leadsight_Default
+		+Lead Indicator:
+			Filename: none
+		+Lock Indicator:
+			Lock Filename: hdhud_lock1
+			Locked Filename: hdhud_lockspin
+			Lock Center Offsets: (48, 48)
+			Locked Center Offsets: (48, 48)
+		+Offscreen Indicator:
+
+
+		+Hostile Triangle: 
+			Position: (960, 540)
+			Radius: 200
+			Triangle Base: 12
+			Triangle Height: 12
+		+Target Triangle: 
+			Position: (960, 540)
+			Radius: 214
+			Triangle Base: 12
+			Triangle Height: 12
+		+Missile Triangles: 
+			Position: (960, 540)
+			Radius: 190
+			Triangle Base: 8
+			Triangle Height: 8
+
+
+		+Directives:
+			Position: (30,430)
+			Top Background Filename: hdhud_directives1
+			Entry Background Filename: hdhud_directives2
+			Bottom Background Filename: hdhud_directives3
+			Header Offsets: (7, 2)
+			Top Background Height: 26
+			List Start Offsets: (9, 26)
+			Entry Height: 16
+			Max Line Width: 300
+		+Escort View:
+			Position: (1590,430)
+			Top Background Filename: hdhud_escort1
+			Entry Background Filename: hdhud_escort2
+			Bottom Background Filename: hdhud_escort3
+			Entry Height: 16
+			Header Offsets: (156, 2)
+			List Start Offsets: (0, 26)
+			Hull X-offset: 250
+			Name X-offset: -40
+			Status X-offset: 222
+			Ship Name Max Width: 250
+			Right-Align Ship Names: TRUE
+		+Damage:
+			Position: (810, 120)
+			Top Background Filename: hdhud_damage1
+			Entry Background Filename: hdhud_damage2
+			Bottom Background Filename: hdhud_damage3
+			Header Offsets: (7, 2)
+			Hull Integrity Offsets: (10, 26)
+			Hull Integrity Value X-Offset: 290
+			Top Background Height: 24
+			Subsystem Entry Height: 16
+			Subsystem List Start Offsets: (26, 42)
+			Subsystem Entry Value X-offset: 290
+		+Wingman Status: 
+			Position: (1765, 319)
+			Left Background Filename: hdhud_wingman1
+			Entry Background Filename: hdhud_wingman2
+			Right Background Filename: hdhud_wingman3
+			Dot Filename: hdhud_wingman4
+			Header Offsets: (16, 2)
+			Fixed Header Position: TRUE
+			Left Background Width: 120
+			Entry Width: 60
+			Right Background Offset: -150
+			Single Wing Offsets: (40, 32)
+			Multiple Wing Start Offsets: (40, 32)
+			Wing Name Offsets: (40, 52)
+			Dot Offsets: (30, 0) (21, 16) (39, 16) (30, 32) (12, 32) (48, 32)
+		+Squad Message: 
+			Position: (1590, 108)
+			Top Background Filename: hdhud_message1
+			Entry Background Filename: hdhud_message2
+			Bottom Background Filename: hdhud_message3
+			Header Offsets: (95, 4)
+			List Start Offsets: (0, 28)
+			Top Background Height: 28
+			Entry Height: 16
+			Command X-Offset: 26
+			Page Up Offsets: (220, 28)
+			Page Down Offsets: (217, 187)
+
+	
+	; FIGHTER INFO
+		+Kills: 
+			Position: (1290, 800)
+			Filename: hdhud_kills1
+			Text Offsets: (18, 15)
+			Value Offsets: (193, 15)
+		+Auto Speed:
+			Position: (1399, 848)
+			Filename: hdhud_toggle1
+			Auto Offsets: (10000, 10000)
+			Speed Offsets: (10000, 10000)
+		+Auto Target:
+			Position: (1303, 848)
+			Filename: hdhud_toggle1
+			Auto Offsets: (10000, 10000)
+			Target Offsets: (10000, 10000)
+		+Weapons: 
+			Position: (1568, 815)
+			Primary List Top Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Primary List Middle Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Primary List Bottom Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Secondary List Top Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Secondary List Entry Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Secondary List Bottom Background Filename: hdhud_weaponsentry
+				Alt Ballistic Filename: hdhud_weaponsentry
+			Header Offsets: (0, 0)
+				Alt Ballistic Offsets: (0, 0)
+			Top Primary Frame Height: 32
+			Top Secondary Frame Height: 20
+			Primary List Start Y-offset: 32 
+			Secondary list Start Y-offset: 20
+			Primary Weapon Ammo X-offset: 310
+			Primary Weapon Link X-offset: 33
+			Primary Weapon Name X-offset: 50
+			Secondary Weapon Ammo X-offset: 310
+			Secondary Weapon Linked X-offset: 25
+			Secondary Weapon Name X-offset: 50
+			Secondary Weapon Reload X-offset: 0
+			Primary Weapon Entry Height: 16
+			Secondary Weapon Entry Height: 16
+		+ETS Retail:
+			Filename: none
+		+Countermeasures:
+			Position: (1563, 1028)
+			Filename: hdhud_countermeasure1
+			Text Offsets: (60, 3)
+			Value Offsets: (20, 3)
+		+Mission Time: 
+			Position: (1683, 1028)
+			Filename: hdhud_time1
+			Text Offsets: (20, 3)
+			Value Offsets: (110, 3)
+	
+	; TARGET INFO
+		+Target Monitor: 
+			Position: (30, 800)
+			Monitor Filename: hdhud_targetview1
+			Viewport Offsets: (14, 37)
+			Viewport Size: (351, 202)
+			Integrity Bar Offsets: (10000, 10000)
+			Status Offsets: (330, 47)
+			Name Offsets: (18, 15)
+			Class Offsets: (408, 15)
+			Distance Offsets: (408, 40)
+			Speed Offsets: (530, 40)
+			Hull Offsets: (320, 47)
+			Cargo Contents Offsets: (408, 59)
+			Cargo Scan Start Offsets: (14, 37)
+			Cargo Scan Size: (351, 202)
+		+Extra Target Data:
+			Position: (30, 800)
+			Bracket Offsets: (10000, 10000)
+			Dock Offsets: (408, 75)
+			Dock Max Width: 250
+			Order Offsets: (408, 91)
+			Order Max Width: 250
+			Time Offsets: (408, 107)
+
+; ------------------------------------------------------------------------
+		+Multiplayer Messages:
+			Position: (11, 253)
+		+Voice Status: 
+			position: (7, 174)
+		+Ping: 
+			Position: (1260, 5)
+		+Lag:
+			Position: (881, 558)
+		+Supernova: 
+			Position: (239, 179)
+	$End Gauges
+#End
