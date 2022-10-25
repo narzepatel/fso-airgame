@@ -1,0 +1,13 @@
+#Game Sounds Start
+
+$Name: plane-explode
+	+Entry: plane-explode.wav
+	+Cycle type: sequential
+	+Preload: no
+	+Volume: (0.5)
+	+3D Sound:
+        	+Attenuation start: 50
+        	+Attenuation end: 400
+	+Pitch: (1.0)
+
+#Game Sounds End

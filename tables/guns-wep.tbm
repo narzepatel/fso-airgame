@@ -24,6 +24,7 @@ $Lifetime:		60.0
 $Energy Consumed:	0
 $Cargo Size:		1.0
 $LaunchSnd:		vulcan
+$ImpactSnd:		gun-hit
 $Rearm Rate:		2.0
 $Rearm Ammo Increment:	1000
 +Weapon Range:		120000
@@ -56,6 +57,7 @@ $Lifetime:		120.0
 $Energy Consumed:	0
 $Cargo Size:		1.0
 $LaunchSnd:		gsh
+$ImpactSnd:		gun-hit
 $Rearm Rate:		2.0
 $Rearm Ammo Increment:	1000
 +Weapon Range:		120000

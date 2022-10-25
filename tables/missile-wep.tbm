@@ -36,8 +36,8 @@ $Homing:						YES
 	+Lock Pixels/Sec:				100                                        ;; Pixels moved per sec while locking
 	+Catch-up Pixels/Sec:				100					;; Pixels moved per sec while catching up
 	+Catch-up Penalty:				100					;; Extra pixels to move after catching up
-$LaunchSnd:						missile1                                        ;; The sound it makes when fired
-$ImpactSnd:						0                                        ;; The sound it makes when it hits something
+$LaunchSnd:						missile                                        ;; The sound it makes when fired
+$ImpactSnd:						missile-hit                                      ;; The sound it makes when it hits something
 $FlyBySnd:						-1
 $Rearm Rate:						2.0													;; number of missiles/sec that are rearmed
 $Flags:							( "player allowed")
@@ -50,7 +50,7 @@ $Trail:																			;; Trail cannot be set if Exhaust is set
 	+Bitmap:					newmiss1										;; Bitmap used to draw trail
 $Icon:							iconCrossbow
 $Anim:							cross
-$Impact Explosion:					ExpMissileHit1
+$Impact Explosion:					expl2
 $Impact Explosion Radius:				7.0
 
 #End

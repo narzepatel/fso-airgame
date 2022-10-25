@@ -4,7 +4,7 @@ $Version: 0.10
 $Name:  XSTR("Untitled", -1)
 $Author: sam.hadavi@outlook.com
 $Created: 10/16/22 at 20:20:45
-$Modified: 10/19/22 at 07:59:01
+$Modified: 10/24/22 at 17:45:16
 $Notes:
 This is a FRED2_OPEN created mission.
 $End Notes:
@@ -25,9 +25,9 @@ $end_multi_text
 
 +Viewer pos: -62.112675, 507.592529, -8.081232
 +Viewer orient:
-	0.117406, 0.000000, -0.993084,
-	0.075814, 0.997082, 0.008963,
-	0.990186, -0.076342, 0.117063
+	0.484900, 0.000000, -0.874570,
+	0.083673, 0.995413, 0.046392,
+	0.870558, -0.095674, 0.482675
 
 
 $Skybox Model: clouds-morning.pof
@@ -45,26 +45,22 @@ $end_briefing
 
 $Num stages: 0
 
-#Players		;! 1 total
+#Players		;! 0 total
 
 $Starting Shipname: Alpha 1
 $Ship Choices: (
 	"F-14"	5
-	"F-15"	5
-	"F-16"	5
-	"F-18"	5
-	"F-22"	5
 )
 
 +Weaponry Pool: (
-	"Vulcan"	18
-	"Missile"	64
+	"Vulcan"	19
+	"Missile"	96
 )
 
 #Objects		;! 2 total
 
 $Name: Alpha 1		;! Object #0
-$Class: F-16
+$Class: F-14
 $Team: Friendly
 $Location: 0.000000, 500.000000, 0.000000
 $Orientation:
@@ -74,13 +70,14 @@ $Orientation:
 $AI Behavior: None
 $Cargo 1:  XSTR("Nothing", -1)
 +Initial Hull: 100
++Initial Shields: 100
 +Subsystem: Pilot
 $Arrival Location: Hyperspace
 $Arrival Cue: ( false ) 
 $Departure Location: Hyperspace
 $Departure Cue: ( false ) 
 $Determination: 10
-+Flags: ( "cargo-known" "player-start" )
++Flags: ( "cargo-known" "no-shields" )
 +Flags2: ( )
 +Respawn priority: 0
 +Group: 0
