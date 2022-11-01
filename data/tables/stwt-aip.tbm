@@ -1,0 +1,20 @@
+#AI Profiles
+
+$Default Profile:          FS2 RETAIL
+$Profile Name:             FS2 RETAIL
++nocreate
+
+$Player Autoaim FOV:		4, 3, 2, 1, 0
+
+$fix linked primary weapon decision bug: YES
+$fix ramming stationary targets bug: YES
+$fix heat seekers homing on stealth ships bug: YES
+$fix AI class bug: YES
+$fix ai path order bug: YES
+$aspect bomb invulnerability fix: YES
+$no directional bias for missile and ship turning: YES
+$better combat collision avoidance for fightercraft: YES
+$fixed ship-weapon collisions: YES
+$fix keep-safe-distance: YES
+$fix good-rearm-time bug: YES
+#End
