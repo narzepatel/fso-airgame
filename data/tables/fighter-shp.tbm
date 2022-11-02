@@ -50,7 +50,8 @@ $Expl outer rad:		75.0
 $Expl damage:			25.0
 $Expl blast:			1000.0
 $Expl Propagates:		NO
-$Death Roll Rotation Multiplier:0                       
+$Death Roll Rotation Multiplier:0        
+$Ship Death Effect:		expl1               
 $Shockwave Speed:		0.0                      
 $Allowed PBanks:        	( "Vulcan" )
 $Default PBanks:        	( "Vulcan" )

@@ -40,17 +40,26 @@ $LaunchSnd:						missile                                        ;; The sound it 
 $ImpactSnd:						missile-hit                                      ;; The sound it makes when it hits something
 $FlyBySnd:						-1
 $Rearm Rate:						2.0													;; number of missiles/sec that are rearmed
-$Flags:							( "player allowed")
+$Flags:							( "player allowed" "Particle Spew" )
 $Trail:																			;; Trail cannot be set if Exhaust is set
-	+Start Width:  					1.0                                      ;; Width of trail nearest missile
-	+End Width:            				1.0                                       ;; Width of trail before it "evaporates"
-	+Start Alpha:					1.0
-	+End Alpha:					1.0
-	+Max Life:             				20.0
-	+Bitmap:					missmk										;; Bitmap used to draw trail
+	+Start Width:            			0.4                                       ;; Width of trail nearest missile
+	+End Width: 	           			0.1                                       ;; Width of trail before it "evaporates"
+	+Start Alpha:						1.0
+	+End Alpha:							0.0
+	+Max Life:							0.2                                       ;; how many seconds before trail disappears
+	+Bitmap:							none
 $Icon:							iconCrossbow
 $Anim:							cross
 $Impact Explosion:					expl2
 $Impact Explosion Radius:				7.0
+$Pspew:
+	+Index: 0
+	+Count:		1
+	+Time:		10
+	+Vel:		0.0
+	+Radius:	0.5
+	+Life:		1.0
+	+Scale:		0.0
+	+Bitmap:	missmk
 
 #End

@@ -1,10 +1,10 @@
 #Mission Info
 
 $Version: 0.10
-$Name:  XSTR("Untitled", -1)
-$Author: sam.hadavi@outlook.com
+$Name:  XSTR("Terrain Test", -1)
+$Author: 
 $Created: 10/16/22 at 20:20:45
-$Modified: 10/24/22 at 17:45:16
+$Modified: 11/01/22 at 18:59:50
 $Notes:
 This is a FRED2_OPEN created mission.
 $End Notes:
@@ -25,8 +25,8 @@ $end_multi_text
 
 +Viewer pos: -62.112675, 507.592529, -8.081232
 +Viewer orient:
-	0.484900, 0.000000, -0.874570,
-	0.083673, 0.995413, 0.046392,
+	0.484899, -0.000000, -0.874570,
+	0.083674, 0.995413, 0.046392,
 	0.870558, -0.095674, 0.482675
 
 
@@ -45,7 +45,7 @@ $end_briefing
 
 $Num stages: 0
 
-#Players		;! 0 total
+#Players		;! 1 total
 
 $Starting Shipname: Alpha 1
 $Ship Choices: (
@@ -77,7 +77,7 @@ $Arrival Cue: ( false )
 $Departure Location: Hyperspace
 $Departure Cue: ( false ) 
 $Determination: 10
-+Flags: ( "cargo-known" "no-shields" )
++Flags: ( "cargo-known" "no-shields" "player-start" )
 +Flags2: ( )
 +Respawn priority: 0
 +Group: 0

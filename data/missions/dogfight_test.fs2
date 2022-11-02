@@ -1,10 +1,10 @@
 #Mission Info
 
 $Version: 0.10
-$Name:  XSTR("skytest", -1)
-$Author: sam.hadavi@outlook.com
+$Name:  XSTR("Dogfight Test", -1)
+$Author: 
 $Created: 10/15/22 at 13:36:22
-$Modified: 10/21/22 at 17:10:30
+$Modified: 11/01/22 at 19:00:13
 $Notes:
 This is a FRED2_OPEN created mission.
 $End Notes:
@@ -23,11 +23,11 @@ $end_multi_text
 +Hull Repair Ceiling: 0.000000
 +Subsystem Repair Ceiling: 100.000000
 
-+Viewer pos: 59.958229, 67.749565, 2051.962158
++Viewer pos: 2.130948, 8.658801, 34.119488
 +Viewer orient:
-	0.997755, -0.000002, -0.066978,
-	0.016447, 0.969389, 0.244980,
-	0.064927, -0.245532, 0.967212
+	-0.998055, -0.000002, 0.062335,
+	-0.015307, 0.969389, -0.245054,
+	-0.060426, -0.245532, -0.967503
 
 
 $Skybox Model: clouds-day.pof
